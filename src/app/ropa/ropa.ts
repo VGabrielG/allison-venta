@@ -59,10 +59,6 @@ import { Unsubscribe } from 'firebase/firestore';
     </div>
 
     <div class="total-bar" *ngIf="showFilters">
-      <div class="total-display">
-        <i class="fa-solid fa-calculator"></i> Total Inventario: 
-        <span class="total-amount-inline">{{ totalSum | currency:'CLP':'symbol-narrow':'1.0-0' }}</span>
-      </div>
       <span class="product-count"><i class="fa-solid fa-box"></i> {{ filteredProducts.length }} productos</span>
     </div>
 
@@ -85,13 +81,15 @@ import { Unsubscribe } from 'firebase/firestore';
             </div>
           </div>
 
-          <h3 class="product-title">{{ prod.title }}</h3>
-          <p class="product-desc">{{ prod.description }}</p>
-          <div class="product-footer">
-            <span class="product-price">{{ prod.price | currency:'CLP':'symbol-narrow':'1.0-0' }}</span>
-            <div class="product-actions" *ngIf="showFilters && (fb.isAdmin$ | async)">
-              <button class="btn-edit-icon" (click)="openEditModal(prod)" title="Editar"><i class="fa-solid fa-pen"></i></button>
-              <button class="btn-delete-icon" (click)="confirmDelete(prod)" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+          <div class="product-info">
+            <h3 class="product-title">{{ prod.title }}</h3>
+            <p class="product-desc">{{ prod.description }}</p>
+            <div class="product-footer">
+              <span class="product-price">{{ prod.price | currency:'CLP':'symbol-narrow':'1.0-0' }}</span>
+              <div class="product-actions" *ngIf="showFilters && (fb.isAdmin$ | async)">
+                <button class="btn-edit-icon" (click)="openEditModal(prod)" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-delete-icon" (click)="confirmDelete(prod)" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+              </div>
             </div>
           </div>
         </div>
@@ -156,14 +154,7 @@ import { Unsubscribe } from 'firebase/firestore';
       </div>
     </div>
 
-    <!-- Total Modal -->
-    <div class="image-modal" *ngIf="isTotalVisible" (click)="hideTotalSum()">
-      <div class="total-modal-content" (click)="$event.stopPropagation()">
-        <h2 class="total-title">Total Seccion Ropa</h2>
-        <span class="total-amount">{{ totalSum | currency:'CLP':'symbol-narrow':'1.0-0' }}</span>
-        <button class="btn-close-total" (click)="hideTotalSum()">Cerrar</button>
-      </div>
-    </div>
+
 
     <!-- Delete Confirm Modal -->
     <div class="image-modal" *ngIf="deleteModalOpen" (click)="cancelDelete()">

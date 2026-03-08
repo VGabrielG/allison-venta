@@ -1,0 +1,24 @@
+<nav>
+  <div class="nav-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Hogar</a>
+    <a routerLink="/ropa" routerLinkActive="active">Ropa</a>
+    <a routerLink="/licores" routerLinkActive="active">Licores</a>
+  </div>
+  <div class="auth-section">
+    <button *ngIf="(fb.currentUser$ | async) === null" class="btn-login" (click)="login()" title="Ingresar para administrar">
+      <i class="fa-solid fa-user-lock"></i>
+    </button>
+    <div *ngIf="(fb.currentUser$ | async) as user" class="user-info">
+      <span class="user-email" [class.is-admin]="(fb.isAdmin$ | async)">
+        {{ user.email }} <i *ngIf="(fb.isAdmin$ | async)" class="fa-solid fa-check-circle" title="Admin"></i>
+      </span>
+      <button class="btn-logout" (click)="logout()" title="Cerrar Sessión">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </button>
+    </div>
+  </div>
+</nav><router-outlet></router-outlet>
+
+<footer>
+  <p>&copy; 2026 Venta Hogar Allinson. Diseño pensado para ti.</p>
+</footer>

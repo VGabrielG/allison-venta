@@ -277,7 +277,7 @@ nav a:hover:not(.active) {
 }
 
 .product-info {
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     padding: 1.5rem;
     flex-grow: 1;
     display: flex;

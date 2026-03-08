@@ -749,7 +749,7 @@ nav a:hover:not(.active) {
 }
 
 .pdf-capture-mode .product-title {
-    color: white !important;
+    color: #1A1A1A !important;
 }
 
 .pdf-capture-mode h1, .pdf-capture-mode .subtitle {
